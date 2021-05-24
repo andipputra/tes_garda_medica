@@ -8,7 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,10 +21,6 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(providers: [
         BlocProvider(create: (context) => HomeCubit()..showListData()),
       ], child: HomeScreen()),
-      // routes: {
-      //   '/home': (context) => HomeScreen(),
-      //   '/addEdit': (context) => AddEditScreen()
-      // },
     );
   }
 }

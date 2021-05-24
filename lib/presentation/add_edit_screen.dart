@@ -18,7 +18,6 @@ class AddEditScreen extends StatefulWidget {
 class _AddEditScreenState extends State<AddEditScreen> {
   @override
   Widget build(BuildContext context) {
-    print(widget.todo);
 
     return BlocProvider(
       create: (context) => AddEditCubit()..setInitial(),
@@ -64,7 +63,6 @@ class _AddEditFormState extends State<AddEditForm> {
 
     return BlocListener<AddEditCubit, AddEditState>(
         listener: (context, state) {
-          print('state is $state');
 
           if (state is AddEditSuccess) {
             Navigator.pop(context);

@@ -45,12 +45,4 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeError(message: 'Failed Delete'));
     }
   }
-
-  // Future<void> showUpdateForm() async {
-  //   emit(HomeUpdateForm());
-  // }
-
-  // Future<void> showAddForm() async {
-  //   emit(HomeAddForm());
-  // }
 }

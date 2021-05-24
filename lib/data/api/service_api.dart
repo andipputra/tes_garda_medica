@@ -4,15 +4,12 @@ import 'package:tes_garda_medica/data/model/todo.dart';
 class ServicesApi {
   Future<List<Todo>> getAllToDo() async {
     try {
-      var response = await Dio().get(
-          'https://my-json-server.typicode.com/andipputra/fake_api/todos'
-          // 'http://localhost:3000/todos/'
-          );
+      var response = await Dio()
+          .get('https://my-json-server.typicode.com/andipputra/fake_api/todos');
 
       if (response.statusCode == 200) {
-        var result = (response.data as List).map((x) => Todo.fromJson(x)).toList();
-
-        print(result);
+        var result =
+            (response.data as List).map((x) => Todo.fromJson(x)).toList();
 
         return result;
       } else {
@@ -26,9 +23,7 @@ class ServicesApi {
   Future<Todo?> getToDoById(int id) async {
     try {
       var response = await Dio().get(
-          'https://my-json-server.typicode.com/andipputra/fake_api/todos/$id'
-          // 'http://localhost:3000/todos/$id'
-          );
+          'https://my-json-server.typicode.com/andipputra/fake_api/todos/$id');
 
       if (response.statusCode == 200) {
         return Todo.fromJson(response.data);
@@ -44,7 +39,6 @@ class ServicesApi {
     try {
       var response = await Dio().post(
           'https://my-json-server.typicode.com/andipputra/fake_api/todos',
-          // 'http://localhost:3000/todos',
           data: todo.toJson());
 
       if (response.statusCode == 201) {
@@ -61,7 +55,6 @@ class ServicesApi {
     try {
       var response = await Dio().put(
           'https://my-json-server.typicode.com/andipputra/fake_api/todos/${todo.id}',
-          // 'http://localhost:3000/todos/${todo.id}',
           data: todo.toJson());
       if (response.statusCode == 200) {
         return Todo.fromJson(response.data);
@@ -76,9 +69,7 @@ class ServicesApi {
   Future<int?> deleteTodo(int todoId) async {
     try {
       var response = await Dio().delete(
-          'https://my-json-server.typicode.com/andipputra/fake_api/todos/$todoId'
-          // 'http://localhost:3000/todos/$todoId'
-          );
+          'https://my-json-server.typicode.com/andipputra/fake_api/todos/$todoId');
 
       return response.statusCode;
     } catch (e) {

@@ -16,7 +16,6 @@ class AddEditCubit extends Cubit<AddEditState> {
     emit(AddEditProcessing());
 
     try {
-      print('add accessted with data : $todo');
       var result = await ServicesApi().addToDo(todo!);
 
       if (result != null) {
@@ -33,7 +32,6 @@ class AddEditCubit extends Cubit<AddEditState> {
     emit(AddEditProcessing());
 
     try {
-      print('updated accessted data : $todo');
       var result = await ServicesApi().updateTodo(todo!);
 
       if (result != null) {

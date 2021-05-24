@@ -56,7 +56,6 @@ void main() {
       var result = await serviceApi.getToDoById(id);
 
       expect(result, isNull);
-      // expect(result, isA<Todo>());
     });
   });
 
