@@ -21,9 +21,7 @@ class HomeScreen extends StatelessWidget {
           }
 
           if (state is HomeError) {
-            return Container(
-              child: Text(state.message!),
-            );
+            return Text(state.message!);
           }
 
           return Center(child: CircularProgressIndicator());
@@ -42,10 +40,9 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 8,
-        child: Container(
-          height: 48,
-          color: Colors.teal,
-        ),
+        color: Colors.teal,
+        clipBehavior: Clip.antiAlias,
+        child: Container(height: 48,)
       ),
     );
   }
