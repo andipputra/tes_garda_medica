@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tes_garda_medica/presentation/home_screen.dart';
+import 'package:tes_garda_medica/presentation/home/home_screen.dart';
 import 'package:tes_garda_medica/state/cubit/home_cubit.dart';
 
 void main() {
@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           backgroundColor: Colors.white54,
           primarySwatch: Colors.teal,

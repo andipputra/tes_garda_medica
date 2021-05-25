@@ -4,8 +4,8 @@ import 'package:tes_garda_medica/data/model/todo.dart';
 class ServicesApi {
   Future<List<Todo>> getAllToDo() async {
     try {
-      var response = await Dio()
-          .get('https://my-json-server.typicode.com/andipputra/fake_api/todos');
+      var response = await Dio().get(
+          'https://my-json-server.typicode.com/andipputra/fake_api/todos?_sort=time&_order=desc');
 
       if (response.statusCode == 200) {
         var result =

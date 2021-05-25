@@ -4,31 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tes_garda_medica/data/model/todo.dart';
 import 'package:tes_garda_medica/state/cubit/add_edit_cubit.dart';
 
-class AddEditScreen extends StatefulWidget {
-  final bool isEditing;
-  final Todo? todo;
-
-  AddEditScreen({Key? key, this.isEditing = false, this.todo})
-      : super(key: key);
-
-  @override
-  _AddEditScreenState createState() => _AddEditScreenState();
-}
-
-class _AddEditScreenState extends State<AddEditScreen> {
-  @override
-  Widget build(BuildContext context) {
-
-    return BlocProvider(
-      create: (context) => AddEditCubit()..setInitial(),
-      child: AddEditForm(
-        isEditing: widget.isEditing,
-        todo: widget.todo,
-      ),
-    );
-  }
-}
-
 class AddEditForm extends StatefulWidget {
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -50,6 +25,8 @@ class _AddEditFormState extends State<AddEditForm> {
 
   late String _selectedDate;
 
+  bool showProgressIndicator = false;
+
   @override
   Widget build(BuildContext context) {
     if (widget.isEditing) {
@@ -63,7 +40,6 @@ class _AddEditFormState extends State<AddEditForm> {
 
     return BlocListener<AddEditCubit, AddEditState>(
         listener: (context, state) {
-
           if (state is AddEditSuccess) {
             Navigator.pop(context);
             showDialog(
@@ -75,7 +51,6 @@ class _AddEditFormState extends State<AddEditForm> {
                         TextButton(
                           child: const Text('Close'),
                           onPressed: () {
-                            Navigator.of(context).pop();
                             Navigator.of(context).pop();
                           },
                         ),
@@ -103,17 +78,28 @@ class _AddEditFormState extends State<AddEditForm> {
           }
 
           if (state is AddEditProcessing) {
-            showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                      title: Text('Please Wait'),
-                      content: CircularProgressIndicator(),
-                    ));
+            setState(() {
+              showProgressIndicator = true;
+            });
+            // showDialog(
+            //     context: context,
+            //     builder: (context) => AlertDialog(
+            //           title: Text('Please Wait'),
+            //           content: CircularProgressIndicator(),
+            //         ));
           }
         },
         child: Scaffold(
             appBar: AppBar(
               title: Text(widget.isEditing ? "Edit To Do" : "Add To Do"),
+              bottom: showProgressIndicator
+                  ? PreferredSize(
+                      preferredSize: Size(double.infinity, 1.0),
+                      child: LinearProgressIndicator(
+                        valueColor:
+                            new AlwaysStoppedAnimation<Color>(Colors.teal[50]!),
+                      ))
+                  : null,
             ),
             floatingActionButton: FloatingActionButton(
               backgroundColor: Colors.teal,
